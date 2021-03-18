@@ -14,11 +14,11 @@ This code aims to analyze AFM measurements. As a user, the only file to worry ab
 HEAD
     - AFM_analysis
     - dataAFM
-          - NP7593
-              - NP7593_1mum_Mitte.xyz
-              - NP7594_1mum_rand.xyz
-          - NP7594
-              -NP7594_1mum_Mitte.xyz
+        - NP7593
+            - NP7593_1mum_Mitte.xyz
+            - NP7594_1mum_rand.xyz
+        - NP7594
+            -NP7594_1mum_Mitte.xyz
 
 
 
