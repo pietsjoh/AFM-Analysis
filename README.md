@@ -11,7 +11,7 @@ This code aims to analyze AFM measurements. As a user, the only file to worry ab
 - pandas
 
 ## Directory structure (pathToDirectory = None [if not None, should be the relative path to the head dir of NP7593])
-HEAD
+- HEAD
     - AFM_analysis
     - dataAFM
         - NP7593
