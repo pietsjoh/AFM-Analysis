@@ -24,7 +24,7 @@ class PostProcess2D:
             assert isinstance(self.y_localmax_ind, np.ndarray)
 
 ############################################################################################################################################################################
-    
+
     @staticmethod
     def plot_data(data, dimensions, style="contour_imshow"):
         assert isinstance(data, np.ndarray) and len(data.shape) == 2
@@ -67,7 +67,7 @@ class PostProcess2D:
             z = self.z_values_cut
         else:
             z = self.z_values
-        
+
         max_of_data = np.amax(z)
         threshold = fraction*max_of_data
         if level_thresh:
@@ -80,7 +80,7 @@ class PostProcess2D:
         print()
         print(f"Finished threshold() in {threshold_time}s")
         print()
-    
+
 ############################################################################################################################################################################
 
     def cut_edges(self, size):
@@ -91,13 +91,13 @@ class PostProcess2D:
 
         self.z_values_cut = np.zeros((self.Nx, self.Ny))
         self.z_values_cut[size:-size, size:-size] = self.z_values[size:-size, size:-size]
-        
+
         cut_edges_time = round(time() - start_cut_edges, 2)
         print("-"*100)
         print()
         print(f"Finished cut_edges() in {cut_edges_time}s")
         print()
-    
+
 ############################################################################################################################################################################
 
     def extract_qd_neighbourhood(self, size, index):
@@ -165,7 +165,7 @@ class PostProcess2D:
 
         plt.subplots_adjust(right=0.78)
         plt.legend(loc="upper right", bbox_to_anchor=(1.33, 1))
-    
+
     @staticmethod
     def interp_spline(X, Y, Z, upScale, downScale=-1, plot=False):
         x = X[0, :]

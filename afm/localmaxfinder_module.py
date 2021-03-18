@@ -2,12 +2,11 @@ import numpy as np
 from time import time
 from copy import deepcopy
 import multiprocessing
-import concurrent.futures as cf
 from functools import partial
 
 from afm.postprocess_module import PostProcess2D
 
-class LocalMaxFinder2D:    
+class LocalMaxFinder2D:
     def __init__(self, data, use_cut=False, kernel_size=50):
         assert isinstance(use_cut, bool)
         assert isinstance(data, np.ndarray) and len(data.shape) == 2
@@ -26,13 +25,13 @@ class LocalMaxFinder2D:
 
         self.localmax_ind = self.local_max_values.nonzero()
         self.number_of_qds = self.localmax_ind[0].size
-        
+
         self.cpu_count = multiprocessing.cpu_count()
         self.multiple_counts = 0
         self.local_max_xindex_dump = None
         self.local_max_yindex_dump = None
         self.number_of_points = None
-    
+
 ############################################################################################################################################################################
 
     def mp_prepare(self, part):
@@ -50,10 +49,10 @@ class LocalMaxFinder2D:
         return x_part, y_part
 
 ############################################################################################################################################################################
-    
+
     def mp_lmc(self, part, kernel=1):
         assert isinstance(kernel, int) and kernel > 0
-        
+
         peaks_x, peaks_y = self.mp_prepare(part)
         new_peaks = deepcopy(self.local_max_values)
         kill_count = 0
@@ -105,7 +104,7 @@ class LocalMaxFinder2D:
                 break
             if multiple_count_tmp >= 2:
                 self.multiple_counts +=1
-        
+
         x, y = new_peaks.nonzero()
         if part == self.cpu_count - 1:
             xr = x[part*self.number_of_points : ]
@@ -130,7 +129,7 @@ class LocalMaxFinder2D:
             x, y = result
             self.local_max_xindex_dump = np.append(self.local_max_xindex_dump, x)
             self.local_max_yindex_dump = np.append(self.local_max_yindex_dump, y)
-        
+
         self.localmax_ind = self.local_max_xindex_dump, self.local_max_yindex_dump
         self.number_of_qds = self.local_max_xindex_dump.size
         self.local_max_values = np.zeros((self.Nx, self.Ny))
@@ -200,7 +199,7 @@ class LocalMaxFinder2D:
 
             if multiple_count_tmp >= 2:
                 self.multiple_counts +=1
-        
+
         self.local_max_values = deepcopy(new_peaks)
         self.localmax_ind = self.local_max_values.nonzero()
         self.number_of_qds = self.localmax_ind[0].size
@@ -214,7 +213,7 @@ class LocalMaxFinder2D:
             kernel_list = [1, self.max_kernel]
         else:
             kernel_list = list(range(1, self.max_kernel + 1))
-        
+
         print("-"*100)
         print()
         print("start of local_max_iterator()")

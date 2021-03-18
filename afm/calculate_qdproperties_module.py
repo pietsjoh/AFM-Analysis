@@ -21,9 +21,9 @@ class QDPropertiesCalculation:
         self.ppc = postprocess.PostProcess2D(localmax_ind=(self.x_ind, self.y_ind))
         algoTime = round(time() - algoStart, 2)
         print(f"The absolute heights of the peaks have been calculated in {algoTime}s.")
-    
+
 #############################################################################################################################################################################
-    
+
     def rel_height_scale(self, size, method="amean", methodScale=1):
         algoStart = time()
         if method == "amean":           ## arithmetic mean
@@ -99,7 +99,7 @@ class QDPropertiesCalculation:
         FWHMList = []
         for i in range(self.x_ind.size):
             FWHMList.append(self.fwhm(size, i))
-        
+
         self.FWHMList = lengthScale*np.array(FWHMList)
         self.aspectRatioList = self.FWHMList/self.rel_z_peak_list
         algoTime = round(time() - algoStart, 2)
