@@ -1,4 +1,4 @@
-# AFM_analysis
+# AFM-Analysis
 
 ## General information
 This code aims to analyze AFM measurements. As a user, the only file to worry about is run_afm.py. Configure the available options and run the file (for Example:       python run_afm.py).
